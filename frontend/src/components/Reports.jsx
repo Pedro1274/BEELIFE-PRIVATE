@@ -35,8 +35,8 @@ ChartJS.register(
 
 const Reports = () => {
   const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
-  const [setUsername] = useState("");
-  const [setDashboardData] = useState({
+  const [username, setUsername] = useState("");
+  const [dashboardData, setDashboardData] = useState({
     dias_frequentes: [],
     prioridades_frequentes: [],
     tarefas_prioritarias: [],
