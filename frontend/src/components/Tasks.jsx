@@ -23,6 +23,7 @@ const Tasks = () => {
   }, [setIsDarkMode]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line 
   useEffect(() => {
     const fetchTasks = async () => {
       setIsLoading(true);
@@ -41,7 +42,8 @@ const Tasks = () => {
       }
     };
     
-    fetchTasks(); // Adicionado a chamada da função aqui
+    fetchTasks(); // Adicionado a chamada da função 
+  // eslint-disable-next-line 
   }, [navigate]); // Adicionado navigate como dependência
 
   // Função para salvar uma tarefa

@@ -146,10 +146,11 @@ const Dashboard = () => {
   }, []);
 
     
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line 
   useEffect(() => {
     const theme = getStoredTheme();
     setIsDarkMode(theme === "dark");
+    // eslint-disable-next-line 
   }, []);
 
   useEffect(() => {
