@@ -94,6 +94,7 @@ const Reports = () => {
 
     loadTasks();
     fetchDashboardData();
+  // eslint-disable-next-line 
   }, []);
 
   const { pendingTasks, completedTasks, totalTasks } =
