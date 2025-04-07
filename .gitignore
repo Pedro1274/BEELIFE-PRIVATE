@@ -1,0 +1,31 @@
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Dependency directories
+backend/node_modules/
+frontend/node_modules/
+
+# Env files
+backend/.env
+frontend/.env
+.env*
+
+# Build output
+frontend/build/
+backend/dist/
+
+# OS/System files
+.DS_Store
+Thumbs.db
+
+# Editor folders
+.vscode/
+.idea/
+
+# Optional: lockfiles if você usa só um gerenciador (npm ou yarn ou pnpm)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
