@@ -16,8 +16,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000", 
-        "https://sadusai10023910mkswlekqw0etesting.netlify.app",
-        "https://beelife-private.onrender.com"],
+        "https://beelife.netlify.app"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
