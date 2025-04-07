@@ -145,6 +145,8 @@ const Dashboard = () => {
     setUsername(getStoredUsername());
   }, []);
 
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const theme = getStoredTheme();
     setIsDarkMode(theme === "dark");

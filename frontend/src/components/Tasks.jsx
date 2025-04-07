@@ -22,6 +22,7 @@ const Tasks = () => {
     setIsDarkMode(getStoredTheme() === "dark");
   }, [setIsDarkMode]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const fetchTasks = async () => {
       setIsLoading(true);

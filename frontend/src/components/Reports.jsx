@@ -43,6 +43,7 @@ const Reports = () => {
   });
   const [tasks, setTasks] = useState([]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     setUsername(localStorage.getItem("username"));
   }, []);
@@ -51,6 +52,8 @@ const Reports = () => {
     setIsDarkMode(localStorage.getItem("theme") === "dark");
   }, [setIsDarkMode]);
 
+    
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const loadTasks = async () => {
       try {
