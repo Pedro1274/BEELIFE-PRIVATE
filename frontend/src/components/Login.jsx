@@ -15,25 +15,25 @@ const Login = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      const token = await signInWithGoogle(); // Obtém o token JWT do Google
-      if (!token) return alert("Erro ao autenticar com o Google!");
+      const googleUser = await signInWithGoogle(); // agora retorna um objeto com { token, displayName, email... }
+      if (!googleUser?.token) return alert("Erro ao autenticar com o Google!");
   
       const response = await axios.post(
         "https://beelife-private.onrender.com/api/users/google-login",
-        { token },
+        { token: googleUser.token }, // envia apenas o token para o back-end
         { headers: { "Content-Type": "application/json" } }
       );
   
-      // 🔹 Salva o token corretamente no localStorage
+      // Armazena o token e outros dados, se quiser
       localStorage.setItem("token", response.data.access_token);
+      localStorage.setItem("username", googleUser.displayName); // opcional
   
-      // 🔹 Redireciona para o Dashboard
-      navigate("/");
+      navigate("/"); // redireciona após login
     } catch (error) {
       console.error("Erro ao fazer login com Google", error);
       alert("Erro ao fazer login com Google: " + (error.response?.data?.detail || error.message));
     }
-  };
+  };  
 
   // Função que lida com a mudança nos campos de entrada
   const handleChange = (e) => {
