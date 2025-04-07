@@ -8,7 +8,8 @@ PyJWT
 google-generativeai
 firebase-admin
 python-dotenv
-pymongo
+pymongo[srv]>=4.0
+dnspython>=2.0.0
 pandas
 email-validator
 google-auth

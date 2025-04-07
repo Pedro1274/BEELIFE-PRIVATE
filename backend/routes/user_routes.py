@@ -48,4 +48,3 @@ async def google_login(request: GoogleLoginRequest):
 
     access_token = create_access_token({"sub": email})
     return {"access_token": access_token, "token_type": "bearer", "username": google_user["name"]}
-    

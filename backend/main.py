@@ -44,7 +44,6 @@ def read_root():
     return {"message": "Bem-vindo ao assistente inteligente!"}
 
 # Comando para lançar o backend no localhost: python -m uvicorn main:app --reload
-
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
