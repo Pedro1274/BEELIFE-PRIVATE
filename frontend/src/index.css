@@ -1,0 +1,120 @@
+/* Variáveis de cores e espaçamento */
+:root {
+  --color-background: #f4f4f4;
+  --color-text-dark: #333;
+  --color-button-primary: #333;
+  --color-button-hover: #555;
+  --color-link-hover: #555;
+  --color-text-light: white;
+  --spacing-small: 10px;
+  --spacing-medium: 15px;
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Arial", sans-serif;
+}
+
+/* Corpo da página */
+body {
+  background-color: var(--color-background);
+  height: 100vh;
+}
+
+h1 {
+  font-size: 2rem;
+  color: var(--color-text-dark);
+}
+
+h2 {
+  color: var(--color-text-dark);
+  margin-bottom: var(--spacing-small);
+  font-size: 1.25rem;
+}
+
+p {
+  align-items: left;
+  justify-content: left;
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+
+/* Botões padrão */
+button {
+  background-color: var(--color-button-primary);
+  color: var(--color-text-light);
+  border: none;
+  padding: var(--spacing-small) var(--spacing-medium);
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: var(--color-button-hover);
+}
+
+/* Links */
+a {
+  text-decoration: none;
+  color: var(--color-text-light);
+  font-weight: bold;
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+/* Media Queries */
+
+/* Celulares (até 767px) */
+@media only screen and (max-width: 767px) {
+  h1 {
+    font-size: 1.5rem; /* Reduz o tamanho da fonte */
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  button {
+    width: 100%; /* Botão ocupa toda a largura */
+  }
+}
+
+/* Tablets (768px a 1023px) */
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.15rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+}
+
+/* Laptops (1024px a 1439px) */
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,297 @@
+:root {
+    --bg-honey: #FFF7E0;
+    --gold: #FFB300;
+    --amber: #FFCA28;
+    --caramel: #A9743D;
+    --choco: #4E342E;
+    --white: #FDFDFD;
+    --text-light: #f5f5f5;
+    --text-dark: #2E1C14;
+    --bg-dark: #2E1C14;
+}
+
+.landing-page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: var(--bg-honey);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Colmeia BG */
+.landing-page::before {
+    content: "";
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: 300%;
+    height: 300%;
+    background-image: url('data:image/svg+xml;utf8,<svg width="120" height="104" viewBox="0 0 120 104" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M30 0L60 0L75 26L60 52L30 52L15 26L30 0Z" fill="%23FFEBB2" fill-opacity="0.05"/></svg>');
+    background-repeat: repeat;
+    z-index: 0;
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* Hero */
+.landing-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 100px 20px 60px;
+    text-align: center;
+    background: linear-gradient(180deg, var(--bg-dark) 100%, var(--bg-honey) 100%);
+    color: var(--text-light);
+    position: relative;
+    z-index: 1;
+}
+
+.landing-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--amber);
+}
+
+.landing-hero p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin-bottom: 40px;
+    color: var(--text-dark);
+}
+
+/* Botões com hover glow */
+.landing-buttons {
+    display: flex;
+    gap: 20px;
+    z-index: 1;
+}
+
+.landing-buttons button {
+    padding: 14px 32px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+}
+
+.landing-buttons button:first-child {
+    background-color: var(--gold);
+    color: var(--text-dark);
+    box-shadow: 0 0 0 transparent;
+}
+
+.landing-buttons button:first-child:hover {
+    background-color: var(--amber);
+    box-shadow: 0 0 16px 4px rgba(255, 202, 40, 0.4);
+}
+
+.landing-buttons button:last-child {
+    background-color: transparent;
+    color: var(--amber);
+    border: 2px solid var(--amber);
+}
+
+.landing-buttons button:last-child:hover {
+    background-color: var(--amber);
+    color: var(--text-dark);
+    box-shadow: 0 0 14px 3px rgba(255, 202, 40, 0.3);
+}
+
+/* Features */
+.landing-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 60px 20px;
+    gap: 40px;
+    background-color: var(--bg-honey);
+    color: var(--text-dark);
+    z-index: 1;
+    position: relative;
+}
+
+.feature-card {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.feature-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.feature-card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transition: all 0.3s ease;
+}
+
+.feature-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    color: var(--choco);
+}
+
+.feature-card p {
+    font-size: 1rem;
+    color: var(--caramel);
+}
+
+/* Bee SVG */
+.bee-icon {
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    width: 60px;
+    animation: fly 6s ease-in-out infinite;
+    z-index: 3;
+    pointer-events: none;
+}
+
+@keyframes fly {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(-10px, -8px) rotate(4deg);
+    }
+
+    50% {
+        transform: translate(-5px, 4px) rotate(-4deg);
+    }
+
+    75% {
+        transform: translate(8px, -6px) rotate(3deg);
+    }
+
+    100% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+.landing-how-it-works {
+    background-color: var(--white);
+    padding: 60px 20px;
+    text-align: center;
+    color: var(--text-dark);
+}
+
+.landing-how-it-works h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: var(--choco);
+}
+
+.how-steps {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+}
+
+.how-steps>div {
+    max-width: 300px;
+    background-color: var(--bg-honey);
+    padding: 25px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.how-steps h4 {
+    font-size: 1.2rem;
+    color: var(--amber);
+    margin-bottom: 10px;
+}
+
+.landing-testimonials {
+    background-color: var(--bg-honey);
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.landing-testimonials h2 {
+    font-size: 2rem;
+    margin-bottom: 40px;
+    color: var(--choco);
+}
+
+.testimonials {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.testimonials blockquote {
+    background-color: #fff;
+    padding: 25px 30px;
+    border-left: 6px solid var(--amber);
+    border-radius: 12px;
+    font-style: italic;
+    color: var(--caramel);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.testimonials span {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .landing-hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .landing-buttons {
+        flex-direction: column;
+    }
+
+    .landing-buttons button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .feature-card {
+        padding: 20px 15px;
+    }
+
+    .landing-hero p {
+        font-size: 1rem;
+    }
+
+    .landing-features {
+        gap: 20px;
+    }
+
+    .bee-icon {
+        width: 45px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
