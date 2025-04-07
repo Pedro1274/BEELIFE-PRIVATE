@@ -1,5 +1,8 @@
 import os
+from dotenv import load_dotenv
 from motor.motor_asyncio import AsyncIOMotorClient
+
+load_dotenv()  
 
 # A variável MONGO_URI carrega a URI de conexão com o banco de dados MongoDB, 
 # utilizando a função os.getenv() para pegar a variável de ambiente ou um valor padrão.
