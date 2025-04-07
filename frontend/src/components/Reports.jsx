@@ -12,6 +12,7 @@ import {
   CategoryScale,
   ArcElement,
   BarElement,
+  LinearScale,
   PointElement,
   LineElement,
   Tooltip,
