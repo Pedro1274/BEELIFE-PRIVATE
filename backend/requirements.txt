@@ -1,0 +1,7 @@
+#Lista de bibiliotecas necessárias para as funcionalidades presentes no backend
+fastapi
+uvicorn
+motor
+pydantic
+bcrypt 
+PyJWT
