@@ -22,7 +22,7 @@ const Register = () => {
     e.preventDefault(); // Previne o comportamento padrão do formulário (recarregar a página)
     try {
       // Envia uma requisição POST para o backend com os dados de registro (usuário e senha)
-      await axios.post("http://localhost:8000/api/users/register", {
+      await axios.post("https://beelife-private.onrender.com/api/users/register", {
         username: formData.username,
         password: formData.password,
         email: formData.email

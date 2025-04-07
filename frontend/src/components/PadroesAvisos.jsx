@@ -35,7 +35,7 @@ const PadroesAvisos = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/api/patterns/padroes")
+      .get("https://beelife-private.onrender.com/api/patterns/padroes")
       .then((response) => {
         console.log("📦 Dados recebidos:", response.data);
         setPadroes(response.data);
@@ -43,7 +43,7 @@ const PadroesAvisos = () => {
       .catch((error) => console.error("Erro ao buscar padrões:", error));
 
     axios
-      .get("http://127.0.0.1:8000/api/patterns/avisos")
+      .get("https://beelife-private.onrender.com/api/patterns/avisos")
       .then((response) => {
         // Verifica se a resposta tem a estrutura esperada
         const avisosData =

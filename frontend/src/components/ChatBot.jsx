@@ -18,7 +18,7 @@ export default function ChatComponent() {
     setMessages([...messages, userMessage]);
 
     try {
-      const response = await fetch("http://localhost:8000/api/chat/chat", {
+      const response = await fetch("https://beelife-private.onrender.com/api/chat/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: input }), // Alterado de 'message' para 'text'

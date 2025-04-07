@@ -19,7 +19,7 @@ const Login = () => {
       if (!token) return alert("Erro ao autenticar com o Google!");
   
       const response = await axios.post(
-        "http://localhost:8000/api/users/google-login",
+        "https://beelife-private.onrender.com/api/users/google-login",
         { token },
         { headers: { "Content-Type": "application/json" } }
       );
@@ -46,7 +46,7 @@ const Login = () => {
     e.preventDefault(); // Evita que a página recarregue
     try {
       // Faz a requisição de login usando a API
-      const response = await axios.post("http://localhost:8000/api/users/login", formData);
+      const response = await axios.post("https://beelife-private.onrender.com/api/users/login", formData);
   
       // Salva o token e o username no localStorage
       localStorage.setItem("token", response.data.token);
