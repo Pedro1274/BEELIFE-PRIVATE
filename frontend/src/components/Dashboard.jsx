@@ -18,6 +18,7 @@ import {
   Chart as ChartJS,
   CategoryScale,
   ArcElement,
+  LinearScale,
   BarElement,
   PointElement,
   LineElement,
