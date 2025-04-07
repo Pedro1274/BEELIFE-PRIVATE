@@ -5,7 +5,6 @@ from routes.user_routes import user_router
 from routes.dashboard_routes import dashboard_router  # Importe o roteador de dashboard
 from routes.chatbot_routes import chat_router
 from routes.userstudy_routes import userstudy_router
-from fastapi import FastAPI
 import google.generativeai as genai
 import os
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,7 +16,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000", 
-        "https://sadusai10023910mkswlekqw0etesting.netlify.app"],
+        "https://sadusai10023910mkswlekqw0etesting.netlify.app",
+        "https://beelife-private.onrender.com"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

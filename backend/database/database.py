@@ -3,7 +3,9 @@ from motor.motor_asyncio import AsyncIOMotorClient
 
 # A variável MONGO_URI carrega a URI de conexão com o banco de dados MongoDB, 
 # utilizando a função os.getenv() para pegar a variável de ambiente ou um valor padrão.
-MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://pedroruan792:D5V8JANC9eih88XE@assistente.0y7tx.mongodb.net/?retryWrites=true&w=majority&appName=assistente")
+MONGO_URI = os.getenv("MONGO_URI")
+if not MONGO_URI:
+    raise ValueError("MONGO_URI não encontrada no arquivo .env")
 
 # O cliente do MongoDB é criado usando o AsyncIOMotorClient, que é uma versão assíncrona do motor do MongoDB.
 client = AsyncIOMotorClient(MONGO_URI)

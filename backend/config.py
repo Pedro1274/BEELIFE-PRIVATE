@@ -1,4 +1,3 @@
-from pymongo import MongoClient
 import firebase_admin
 from firebase_admin import credentials, auth
 import os
@@ -11,10 +10,6 @@ load_dotenv()
 MONGO_URI = os.getenv("MONGO_URI")
 if not MONGO_URI:
     raise ValueError("MONGO_URI não encontrada no arquivo .env")
-
-client = MongoClient(MONGO_URI)
-db = client["auth_db"]
-users_collection = db["users"]
 
 # 🔹 Configuração do Firebase Authentication (Carregando o JSON do Firebase Admin SDK)
 FIREBASE_CREDENTIALS = os.getenv("FIREBASE_CREDENTIALS_PATH")

@@ -48,24 +48,36 @@ async def register_user(username: str, password: str, email: EmailStr):
 
 # Função para fazer o login de um usuário
 async def login_user(login: str, password: str):
-    # Verifica se o login é um email ou um nome de usuário
-    user = None
-    if "@" in login:
-        # Busca o usuário pelo email
-        user = await users_collection.find_one({"email": login})
-    else:
-        # Busca o usuário pelo nome de usuário
-        user = await users_collection.find_one({"username": login})
-    
-    # Se o usuário não for encontrado
-    if not user:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Usuário não encontrado")
-    
-    # Verifica se a senha fornecida corresponde à senha criptografada no banco
-    if not bcrypt.checkpw(password.encode("utf-8"), user["password"].encode("utf-8")):
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Senha incorreta")
-    
-    # Gera o token JWT se as credenciais estiverem corretas
-    token = create_access_token(data={"sub": user["username"]})  # Usa o nome de usuário no token
-    
-    return {"token": token, "username": user["username"]}  # Retorna o token e o nome de usuário
+    try:
+        print(f"Tentando login para: {login}")
+
+        user = None
+        if "@" in login:
+            user = await users_collection.find_one({"email": login})
+        else:
+            user = await users_collection.find_one({"username": login})
+
+        if not user:
+            print("Usuário não encontrado")
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Usuário não encontrado")
+
+        # Certifique-se de que a senha esteja presente
+        if "password" not in user or not user["password"]:
+            print("Senha ausente no documento do usuário")
+            raise HTTPException(status_code=500, detail="Erro interno: senha não encontrada")
+
+        if not bcrypt.checkpw(password.encode("utf-8"), user["password"].encode("utf-8")):
+            print("Senha incorreta")
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Senha incorreta")
+
+        # Geração do token
+        token = create_access_token(data={"sub": user["username"]})
+        print(f"Login bem-sucedido para {user['username']}")
+
+        return {"token": token, "username": user["username"]}
+
+    except HTTPException as e:
+        raise e  # Deixa o FastAPI cuidar
+    except Exception as e:
+        print(f"Erro inesperado no login_user: {e}")
+        raise HTTPException(status_code=500, detail="Erro interno ao tentar fazer login")
