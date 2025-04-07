@@ -1,4 +1,4 @@
-from bson import ObjectId
+from bson import ObjectId, errors
 from models.task_model import Task
 from database.database import tasks_collection
 
@@ -29,5 +29,10 @@ async def update_task(task_id: str, updated_task: Task):
 
 # Função para deletar uma tarefa do banco de dados
 async def delete_task(task_id: str):
-    result = await tasks_collection.delete_one({"_id": ObjectId(task_id)})
-    return result.deleted_count > 0  # Retorna True se a tarefa foi deletada
+    try:
+        object_id = ObjectId(task_id)
+    except errors.InvalidId:
+        return False  # ID inválido, tarefa não encontrada/deletada
+
+    result = await tasks_collection.delete_one({"_id": object_id})
+    return result.deleted_count > 0  # True se a tarefa foi deletada

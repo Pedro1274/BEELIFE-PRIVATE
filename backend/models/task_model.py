@@ -3,7 +3,6 @@ from datetime import datetime
 from typing import Optional
 
 class Task(BaseModel):
-	id: Optional[str] = None
 	title: str = Field(..., description="Título da tarefa")
 	description: Optional[str] = Field(None, description="Descrição da terefa")
 	due_date: Optional[datetime] = Field(None, description="Data e hora de conclusão")
