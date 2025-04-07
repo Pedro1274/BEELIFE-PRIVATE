@@ -6,7 +6,7 @@ import "../PadroesAvisos.css";
 const PadroesAvisos = () => {
   const [padroes, setPadroes] = useState(null);
   const [avisos, setAvisos] = useState([]);
-  const [setMessages] = useState([]);
+  const [messages, setMessages] = useState([]);
   const [sections, setSections] = useState([]);
   const [activePopup, setActivePopup] = useState(-1);
   const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
