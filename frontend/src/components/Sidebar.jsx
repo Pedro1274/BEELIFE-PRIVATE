@@ -6,7 +6,6 @@ import Clipboard from "../assets/icons/Clipboard.webp";
 import Check_Circle from "../assets/icons/Check-Circle.webp";
 import SideArrow from "../assets/icons/SideArrow.webp";
 import Calendar from "../assets/icons/Calendar.webp";
-import User from "../assets/icons/User.webp";
 import Message from "../assets/icons/Message-Circle.webp";
 import MenuIcon from "../assets/icons/Menu.webp"; // ícone de hambúrguer
 

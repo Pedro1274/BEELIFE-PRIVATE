@@ -9,7 +9,7 @@ const Tasks = () => {
   const navigate = useNavigate();
   const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
   const [tasks, setTasks] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [setIsLoading] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState("");
   const [newTaskDescription, setNewTaskDescription] = useState("");
   const [newTaskDueDate, setNewTaskDueDate] = useState("");

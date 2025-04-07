@@ -11,7 +11,6 @@ import {
   Chart as ChartJS,
   CategoryScale,
   ArcElement,
-  LinearScale,
   BarElement,
   PointElement,
   LineElement,
@@ -35,8 +34,8 @@ ChartJS.register(
 
 const Reports = () => {
   const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
-  const [username, setUsername] = useState("");
-  const [dashboardData, setDashboardData] = useState({
+  const [setUsername] = useState("");
+  const [setDashboardData] = useState({
     dias_frequentes: [],
     prioridades_frequentes: [],
     tarefas_prioritarias: [],
