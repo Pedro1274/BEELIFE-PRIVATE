@@ -77,9 +77,11 @@ export const fetchUsers = async () => {
 };
 
 // Função para buscar tarefas
-export const getTasks = async () => {
+export const getTasks = async (token) => {
     try {
-        const response = await axios.get(`${API_URL}/tasks`);
+        const response = await axios.get(`${API_URL}/tasks`, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
         return response.data;
     } catch (error) {
         console.error("Erro ao buscar tarefas:", error.response?.data || error.message);
