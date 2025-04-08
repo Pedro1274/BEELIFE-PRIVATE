@@ -2,37 +2,36 @@ from bson import ObjectId, errors
 from models.task_model import Task
 from database.database import tasks_collection
 
-# Função para recuperar todas as tarefas do banco de dados
-async def get_tasks():
+# Função para recuperar todas as tarefas de um usuário específico
+async def get_tasks(user_id: str):
     tasks = []  # Lista para armazenar as tarefas
-    async for task in tasks_collection.find():
-        task["_id"] = str(task["_id"])  # Converte ObjectId para string
+    async for task in tasks_collection.find({"user_id": user_id}):  # Filtra pelo user_id
+        task["_id"] = str(task["_id"])
         tasks.append(task)
-    return tasks  # Retorna a lista de tarefas  
+    return tasks
 
 # Função para criar uma nova tarefa no banco de dados
-async def create_task(task: Task):
-    task_data = task.model_dump()
+async def create_task(task_data: dict):
     new_task = await tasks_collection.insert_one(task_data)
     created_task = await tasks_collection.find_one({"_id": new_task.inserted_id})
     if created_task:
         created_task["_id"] = str(created_task["_id"])
-    return created_task  
+    return created_task
 
-# Função para atualizar uma tarefa existente
-async def update_task(task_id: str, updated_task: Task):
+# Atualizar tarefa apenas se for do usuário logado
+async def update_task(task_id: str, updated_task: Task, user_id: str):
     result = await tasks_collection.update_one(
-        {"_id": ObjectId(task_id)},
-        {"$set": updated_task.model_dump()}  # Corrigido model_dump()
+        {"_id": ObjectId(task_id), "user_id": user_id},  # Verifica também o dono
+        {"$set": updated_task.model_dump()}
     )
-    return result.modified_count > 0  # Retorna True se a tarefa foi modificada
+    return result.modified_count > 0
 
-# Função para deletar uma tarefa do banco de dados
-async def delete_task(task_id: str):
+# Deletar tarefa apenas se for do usuário logado
+async def delete_task(task_id: str, user_id: str):
     try:
         object_id = ObjectId(task_id)
     except errors.InvalidId:
-        return False  # ID inválido, tarefa não encontrada/deletada
+        return False
 
-    result = await tasks_collection.delete_one({"_id": object_id})
-    return result.deleted_count > 0  # True se a tarefa foi deletada
+    result = await tasks_collection.delete_one({"_id": object_id, "user_id": user_id})
+    return result.deleted_count > 0
