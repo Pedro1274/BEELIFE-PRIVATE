@@ -12,6 +12,8 @@ from api.auth import AuthMiddleware
 
 app = FastAPI()
 
+app.add_middleware(AuthMiddleware)
+
 # Configuração do CORS
 app.add_middleware(
     CORSMiddleware,
