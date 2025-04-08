@@ -2,12 +2,13 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.task_routes import task_router
 from routes.user_routes import user_router
-from routes.dashboard_routes import dashboard_router  # Importe o roteador de dashboard
+from routes.dashboard_routes import dashboard_router
 from routes.chatbot_routes import chat_router
 from routes.userstudy_routes import userstudy_router
 import google.generativeai as genai
 import os
 from fastapi.middleware.cors import CORSMiddleware
+from api.auth import AuthMiddleware
 
 app = FastAPI()
 
