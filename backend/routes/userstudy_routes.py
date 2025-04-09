@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Request
 from datetime import datetime, timedelta
 from collections import Counter, defaultdict
 from database.database import tasks_collection
@@ -33,14 +33,20 @@ def sugerir_horarios(dias_frequentes):
     return sugestoes
 
 @userstudy_router.get("/padroes")
-async def analisar_padroes():
-    tarefas = await tasks_collection.find({}, {
-        "_id": 0,
-        "due_date": 1,
-        "priority": 1,
-        "title": 1,
-        "completed": 1
-    }).to_list(None)
+async def analisar_padroes(request: Request):
+    user = request.state.user
+    user_id = user["_id"]
+
+    tarefas = await tasks_collection.find(
+        {"user_id": user_id},
+        {
+            "_id": 0,
+            "due_date": 1,
+            "priority": 1,
+            "title": 1,
+            "completed": 1
+        }
+    ).to_list(None)
 
     dias = []
     hoje = datetime.now()
