@@ -35,7 +35,7 @@ def sugerir_horarios(dias_frequentes):
 @userstudy_router.get("/padroes")
 async def analisar_padroes(request: Request):
     user = request.state.user
-    user_id = user["_id"]
+    user_id = str(user["_id"])
 
     tarefas = await tasks_collection.find(
         {"user_id": user_id},
