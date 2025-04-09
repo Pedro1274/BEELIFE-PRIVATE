@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../AppTemp";
 import { Pie, Line } from "react-chartjs-2";
 import {
@@ -34,6 +35,7 @@ ChartJS.register(
 );
 
 const Reports = () => {
+  const navigate = useNavigate();
   const { isDarkMode, setIsDarkMode } = useContext(ThemeContext);
   const [username, setUsername] = useState("");
   const [dashboardData, setDashboardData] = useState({
@@ -44,18 +46,19 @@ const Reports = () => {
   const [tasks, setTasks] = useState([]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // eslint-disable-next-line
+  // eslint-disable-next-line 
   useEffect(() => {
     setUsername(localStorage.getItem("username"));
-    // eslint-disable-next-line
+  // eslint-disable-next-line 
   }, []);
 
   useEffect(() => {
     setIsDarkMode(localStorage.getItem("theme") === "dark");
   }, [setIsDarkMode]);
 
+    
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // eslint-disable-next-line
+  // eslint-disable-next-line 
   useEffect(() => {
     const loadTasks = async () => {
       const token = localStorage.getItem("token");
@@ -96,8 +99,8 @@ const Reports = () => {
 
     loadTasks();
     fetchDashboardData();
-    // eslint-disable-next-line
-  }, []);
+  // eslint-disable-next-line
+}, []);
 
   const { pendingTasks, completedTasks, totalTasks } =
     calculateTaskCounts(tasks);
