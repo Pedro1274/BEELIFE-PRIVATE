@@ -44,33 +44,36 @@ const Reports = () => {
   const [tasks, setTasks] = useState([]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // eslint-disable-next-line 
+  // eslint-disable-next-line
   useEffect(() => {
     setUsername(localStorage.getItem("username"));
-  // eslint-disable-next-line 
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     setIsDarkMode(localStorage.getItem("theme") === "dark");
   }, [setIsDarkMode]);
 
-    
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // eslint-disable-next-line 
+  // eslint-disable-next-line
   useEffect(() => {
     const loadTasks = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.warn("Token não encontrado, redirecionando...");
+        navigate("/login");
+        return;
+      }
+
       try {
-        const data = await getTasks();
+        const data = await getTasks(token);
         setTasks(data);
       } catch (error) {
         console.error("Erro ao carregar tarefas:", error);
       }
-    // eslint-disable-next-line 
     };
 
-    // eslint-disable-next-line 
     const fetchDashboardData = async () => {
-      // Mock de dados para o exemplo
       const data = {
         dias_frequentes: [
           { dia: "Sunday", frequencia: 2 },
@@ -89,12 +92,11 @@ const Reports = () => {
         ],
       };
       setDashboardData(data);
-    // eslint-disable-next-line 
     };
 
     loadTasks();
     fetchDashboardData();
-  // eslint-disable-next-line 
+    // eslint-disable-next-line
   }, []);
 
   const { pendingTasks, completedTasks, totalTasks } =
