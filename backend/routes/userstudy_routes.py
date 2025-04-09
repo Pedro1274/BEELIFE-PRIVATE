@@ -111,9 +111,12 @@ async def analisar_padroes(request: Request):
     }
 
 @userstudy_router.get("/avisos")
-async def gerar_avisos():
+async def gerar_avisos(request: Request):
+    user = request.state.user
+    user_id = str(user["_id"])
+
     tarefas = await tasks_collection.find(
-        {}, 
+        {"user_id": user_id}, 
         {"_id": 0, "title": 1, "due_date": 1, "priority": 1, "completed": 1}
     ).to_list(None)
     
@@ -133,16 +136,17 @@ async def gerar_avisos():
         atrasada = due_date < hoje and not t["completed"]
 
         if atrasada:
-            avisos.append(f"❌ Tarefa '{t['title']}' está atrasada! Venceu em {due_date.strftime('%d/%m ás %H:%M')}.")
+            avisos.append(f"❌ Tarefa '{t['title']}' está atrasada! Venceu em {due_date.strftime('%d/%m às %H:%M')}.")
             dia_da_semana = due_date.strftime("%A")
             adiamentos_por_dia[dia_da_semana] += 1
         else:
             prazo_curto = due_date - hoje < timedelta(days=2)
             if prazo_curto and t["priority"] == "alta":
-                avisos.append(f"⚠️ Tarefa urgente '{t['title']}' vence em breve ({due_date.strftime('%d/%m ás %H:%M')}).")
+                avisos.append(f"⚠️ Tarefa urgente '{t['title']}' vence em breve ({due_date.strftime('%d/%m às %H:%M')}).")
         
-    #for dia, count in adiamentos_por_dia.items():
-        #if count >= 2:
-            #avisos.append(f"📌 Você costuma adiar tarefas às {dia}s. Deseja reagendar futuras tarefas para outro dia?")
+    # Se quiser ativar esse bloco, pode usar assim:
+    # for dia, count in adiamentos_por_dia.items():
+    #     if count >= 2:
+    #         avisos.append(f"📌 Você costuma adiar tarefas às {dia}s. Deseja reagendar futuras tarefas para outro dia?")
 
     return {"avisos": avisos}
