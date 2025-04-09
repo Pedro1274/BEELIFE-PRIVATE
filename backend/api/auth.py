@@ -5,7 +5,8 @@ from database.database import users_collection
 
 class AuthMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
-        if request.url.path.startswith("/api/tasks") and not request.url.path.endswith("/google-event"):
+        if (request.url.path.startswith("/api/tasks") or request.url.path.startswith("/padroes")) \
+            and not request.url.path.endswith("/google-event"):
             auth_header = request.headers.get("Authorization")
             if not auth_header or not auth_header.startswith("Bearer "):
                 raise HTTPException(status_code=401, detail="Token não encontrado")
