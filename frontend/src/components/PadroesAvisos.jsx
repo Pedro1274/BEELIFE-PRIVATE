@@ -34,8 +34,14 @@ const PadroesAvisos = () => {
   }, [setIsDarkMode]);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    
     axios
-      .get("https://beelife-private.onrender.com/api/patterns/padroes")
+      .get("https://beelife-private.onrender.com/api/patterns/padroes", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         console.log("📦 Dados recebidos:", response.data);
         setPadroes(response.data);
@@ -43,7 +49,11 @@ const PadroesAvisos = () => {
       .catch((error) => console.error("Erro ao buscar padrões:", error));
 
     axios
-      .get("https://beelife-private.onrender.com/api/patterns/avisos")
+      .get("https://beelife-private.onrender.com/api/patterns/avisos", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         // Verifica se a resposta tem a estrutura esperada
         const avisosData =
